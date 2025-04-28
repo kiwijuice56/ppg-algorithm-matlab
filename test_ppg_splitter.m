@@ -10,20 +10,27 @@ resampling_scale = 4;
 time = linspace(ppg_pulse(1, 1), ppg_pulse(length(ppg_pulse), 1), resampling_scale * length(ppg_pulse));
 ppg_signal = interp1(ppg_pulse(:, 1), ppg_pulse(:, 2), time, 'pchip');
 
-% Find the start and end of each pulse by smoothing aggressively
-% before peak finding using a low-pass filter
-frequency_pass = 0.5;
-smoothed_ppg_signal = lowpass(ppg_signal, frequency_pass * resampling_scale, base_sampling_rate * resampling_scale, 'ImpulseResponse', 'iir');
-[peaks, indices] = findpeaks(-smoothed_ppg_signal);
+% Smooth the ppg signal aggressively using a low-pass filter
+filter_order = 50;
+frequency_cutoff = 1;
+smooth = designfilt('lowpassfir','FilterOrder', filter_order, ...
+         'CutoffFrequency', frequency_cutoff * resampling_scale, ...
+         'SampleRate', base_sampling_rate * resampling_scale);
+smoothed_ppg_signal = filter(smooth, ppg_signal);
+
+% Fix the delay caused by the filter before finding the peaks
+delay = mean(grpdelay(smooth));
+reshifted_smoothed_ppg_signal = smoothed_ppg_signal(delay:length(smoothed_ppg_signal) - delay);
+[peaks, indices] = findpeaks(-reshifted_smoothed_ppg_signal);
 
 hold on;
 
-plot(ppg_signal)
-plot(indices, ppg_signal(indices),'*r')
+for i = 1:10 
+    plot(ppg_signal(indices(i) : indices(i + 1)))
+end
 
-title('Estimating a PPG pulse using first 10 fourier coefficients')
+title('Splitting a PPG signal into pulses')
 ylabel('Amplitude') 
 xlabel('Time')
-legend({'Original'},'Location','southwest')
 
 hold off;
