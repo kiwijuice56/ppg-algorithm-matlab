@@ -1,5 +1,5 @@
 % Data measured in ms
-raw_ppg_data = readmatrix("example_ppg_camera.csv");
+raw_ppg_data = readmatrix("data/example_ppg_camera.csv");
 ppg_pulse = raw_ppg_data(:,:);
 sampling_frequency = 50; % Hertz
 
