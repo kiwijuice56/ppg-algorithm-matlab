@@ -18,21 +18,14 @@ for i = 1:3
     files = dir(fullfile(directory,'*.csv')); 
 
     % Scan through all files in a folder
-    for k = 1:length(files)
+    for k = 1:length(files)/2
         base_name = files(k).name;
         file_name = fullfile(directory, base_name);
-        data = readmatrix(file_name);
-        raw_ppg_signal = data(:,:);
+
+        ppg_signal = read_ppg_signal(readmatrix(file_name), 4);
         
-        % Resample the pulse to a higher rate to increase resolution,
-        % using cubic spline interpolation
-        time = linspace(raw_ppg_signal(1, 1), ...
-            raw_ppg_signal(length(raw_ppg_signal), 1), ...
-            resampling_scale * length(raw_ppg_signal));
-        ppg_signal = interp1(raw_ppg_signal(:, 1), raw_ppg_signal(:, 2), time, 'pchip');
-       
         % Some signals are unusually short, discard those
-        if length(ppg_signal) < 5800
+        if length(ppg_signal) < 5800 % Arbitrary length
             continue;
         end
 
@@ -70,6 +63,8 @@ end
 y = num2cell(1:numel(scores));
 x = cellfun(@(x, y) [x(:) y*ones(size(x(:)))], scores, y, 'UniformOutput', 0);
 X = vertcat(x{:});
+
+clf('reset');
 
 hold on 
 

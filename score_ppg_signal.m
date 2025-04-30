@@ -5,20 +5,18 @@ function [score] = score_ppg_signal(ppg_signal, sampling_frequency, cutoff_frequ
 
 indices = split_ppg_signal(ppg_signal, sampling_frequency, cutoff_frequency);
 
-scores = zeros(length(indices), 1);
-
-
-
+scores = zeros(length(indices) - 1, 1);
 for i=1:length(indices) - 1
-    pulse = preprocess_ppg_pulse(ppg_signal(indices(i) : indices(i + 1)));
-    if (length(pulse) < 20) 
-        continue;
-    end
+    pulse = ppg_signal(indices(i) : indices(i + 1));
+    pulse = preprocess_ppg_pulse(pulse);
+    
     [cos_coef, sin_coef] = calculate_fourier_coefficients(pulse);
-    scores(i) = sum(cos_coef(1:10)) + sum(sin_coef(1:10));
+    cos_coef = cos_coef(1:20);
+    weights = cos_coef / sum(cos_coef);
+    scores(i) = dot(weights, sqrt(1:20));
 end
 
-score = median(scores);%median(maxk(scores, 3));
+score = median(maxk(scores, 10))
 
 end
 

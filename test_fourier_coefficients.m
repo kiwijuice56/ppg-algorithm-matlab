@@ -1,16 +1,12 @@
-% Data measured in ms
-raw_ppg_data = readmatrix("data/example_ppg_camera.csv");
-ppg_pulse = raw_ppg_data(:,:);
-sampling_frequency = 50; % Hertz
+% Tests and plots the fourier coefficient procedure
 
-% Resample the pulse to a higher rate to increase resolution,
-% using cubic spline interpolation
+% Data measured in ms
 resampling_scale = 4;
-time = linspace(ppg_pulse(1, 1), ppg_pulse(length(ppg_pulse), 1), resampling_scale * length(ppg_pulse));
-ppg_signal = interp1(ppg_pulse(:, 1), ppg_pulse(:, 2), time, 'pchip');
+ppg_signal = read_ppg_signal(readmatrix("data/example_ppg_camera.csv"), resampling_scale);
+sampling_frequency = 50; % Hertz
+cutoff_frequency = 1; % Hertz
 
 % Find a single pulse
-cutoff_frequency = 1; % Hertz
 indices = split_ppg_signal(ppg_signal, sampling_frequency, cutoff_frequency);
 ppg_signal = ppg_signal(indices(2) : indices(3)); % Pick an arbitrary pulse
 
@@ -23,7 +19,6 @@ ppg_signal = preprocess_ppg_pulse(ppg_signal);
 % Test: recreate signal using first few coefficients
 
 recreated_signal = zeros(length(ppg_signal), 1);
-
 coefficient_count = 10;
 
 for x=1:1:length(ppg_signal)
@@ -41,7 +36,7 @@ recreated_signal = preprocess_ppg_pulse(recreated_signal);
 
 % Plot original + recreation
 
-cla reset;
+clf('reset');
 
 hold on;
 
