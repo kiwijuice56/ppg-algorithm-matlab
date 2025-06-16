@@ -23,7 +23,6 @@ scores2 = score_ppg_signal(ppg_signal2, ...
 scatter(ones(size(scores1)).*(1+(rand(size(scores1))-0.5)/10),scores1,'.', 'linewidth', 1)
 scatter(ones(size(scores2)).*(0.2+1+(rand(size(scores2))-0.5)/10),scores2,'.', 'linewidth', 1)
 
-
 boxplot(scores1);
 boxplot(scores2,'Positions',1.2);
 

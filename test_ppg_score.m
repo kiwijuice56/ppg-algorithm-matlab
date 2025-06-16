@@ -29,11 +29,12 @@ for i = 1:3
             continue;
         end
 
-        % Calculate the score
-        score = score_ppg_signal(ppg_signal, ...
-                                 sampling_frequency * resampling_scale, ...
-                                 cutoff_frequency * resampling_scale);
-        
+        % Calculate the score of all pulses in a signal
+        single_signal_scores = score_ppg_signal(ppg_signal);
+                
+        % Return the median among the pulse scores
+        score = median(single_signal_scores);
+
         if i <= 2
             % Store young athletic/non-athletic in their own plots
             scores{i}(end + 1) = score;
