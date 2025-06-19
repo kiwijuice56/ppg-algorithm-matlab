@@ -9,14 +9,10 @@ hold on
 
 % Calculate the score
 ppg_signal1 = read_ppg_signal(readmatrix("data/good-nagpur/412-2.csv"), 4);
-scores1 = score_ppg_signal(ppg_signal1, ...
-                         sampling_frequency * resampling_scale, ...
-                         cutoff_frequency * resampling_scale);
+scores1 = score_ppg_signal(ppg_signal1);
 
 ppg_signal2 = read_ppg_signal(readmatrix("data/young-athletic/5_raw.csv"), 4);
-scores2 = score_ppg_signal(ppg_signal2, ...
-                         sampling_frequency * resampling_scale, ...
-                         cutoff_frequency * resampling_scale);
+scores2 = score_ppg_signal(ppg_signal2);
 
 
 % Plot individual points
