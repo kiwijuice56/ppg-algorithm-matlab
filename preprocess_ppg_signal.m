@@ -25,5 +25,8 @@ new_sample_count = int64(new_sampling_frequency * recording_length);
 scaled_timestamps = linspace(double(recording_start), double(recording_end), new_sample_count);
 processed_ppg_signal = interp1(double(timestamps), processed_ppg_signal, scaled_timestamps, 'pchip');
 
+% Detrend
+processed_ppg_signal = detrend(processed_ppg_signal);
+
 end
 

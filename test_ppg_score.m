@@ -15,7 +15,7 @@ for i = 1:3
 
     % Scan through all files in a folder, but only view half (to prevent
     % overfitting)
-    for k = 1:length(files)/2
+    for k = 1:length(files)
         % Load the signal
         base_name = files(k).name;
         file_name = fullfile(directory, base_name);

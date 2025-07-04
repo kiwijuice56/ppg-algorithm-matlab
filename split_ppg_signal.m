@@ -7,13 +7,10 @@ arguments
     ppg_signal (1,:) double
 end
 
-% Detrend the ppg signal
-detrended_ppg_signal = detrend(ppg_signal);
-
 % Smooth the ppg signal aggressively using a moving average
 n = 30;
 smoothing_coef = ones(1, n)/ n;
-smoothed_ppg_signal = filter(smoothing_coef, 1, detrended_ppg_signal);
+smoothed_ppg_signal = filter(smoothing_coef, 1, ppg_signal);
 delay = floorDiv(length(smoothing_coef) - 1, 2);
 
 
