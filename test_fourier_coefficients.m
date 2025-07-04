@@ -1,14 +1,12 @@
 % Tests and plots the fourier coefficient procedure
 
 % Data measured in ms
-resampling_scale = 4;
-ppg_signal = read_ppg_signal(readmatrix("data/example_ppg_camera.csv"), resampling_scale);
-sampling_frequency = 50; % Hertz
-cutoff_frequency = 1; % Hertz
+[ppg_signal, timestamps] = read_ppg_signal("data/example_ppg_camera.csv");
+ppg_signal = preprocess_ppg_signal(ppg_signal, timestamps);
 
 % Find a single pulse
-indices = split_ppg_signal(ppg_signal, sampling_frequency, cutoff_frequency);
-ppg_signal = ppg_signal(indices(2) : indices(3)); % Pick an arbitrary pulse
+[~, indices] = split_ppg_signal(ppg_signal);
+ppg_signal = ppg_signal(indices(3) : indices(4)); % Pick an arbitrary pulse
 
 % Preprocess PPG pulse
 ppg_signal = preprocess_ppg_pulse(ppg_signal);

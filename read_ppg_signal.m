@@ -1,19 +1,15 @@
-function [processed_ppg_signal] = read_ppg_signal(ppg_matrix, resampling_scale)
-%READ_PPG_SIGNAL Given the data matrix read from a .csv file, return the
-%ppg signal interpolated and preprocessed
+function [ppg_signal, timestamps] = read_ppg_signal(path)
+%READ_PPG_SIGNAL Given the .csv path of a signal, return the raw time and data arrays.
+%This is only used for MATLAB testing, since the app is responsible for 
+%saving and loading PPG signals itself.
 
 arguments
-    ppg_matrix (:,4) double
-    resampling_scale (1,1) double
+    path string
 end
 
-% Interpolate using cubic interpolation
-time = linspace(ppg_matrix(1, 1), ppg_matrix(length(ppg_matrix), 1), ...
-    resampling_scale * length(ppg_matrix));
-ppg_signal = interp1(ppg_matrix(:, 1), ppg_matrix(:, 2), time, 'pchip');
-
-% Invert to correct orientation
-processed_ppg_signal = -ppg_signal;
+data_matrix = readmatrix(path);
+timestamps = int64(data_matrix(:, 1));
+ppg_signal = data_matrix(:, 2);
 
 end
 

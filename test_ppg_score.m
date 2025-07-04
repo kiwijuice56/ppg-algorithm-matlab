@@ -1,7 +1,3 @@
-sampling_frequency = 50; % Hertz
-cutoff_frequency = 1; % Hertz
-resampling_scale = 4;
-
 % Initialize the output
 scores = {[],[],[],[],[],[]};
 
@@ -17,20 +13,16 @@ for i = 1:3
     directory = folders(i); 
     files = dir(fullfile(directory,'*.csv')); 
 
-    % Scan through all files in a folder
+    % Scan through all files in a folder, but only view half (to prevent
+    % overfitting)
     for k = 1:length(files)/2
+        % Load the signal
         base_name = files(k).name;
         file_name = fullfile(directory, base_name);
-
-        ppg_signal = read_ppg_signal(readmatrix(file_name), 4);
-        
-        % Some signals are unusually short, discard those
-        if length(ppg_signal) < 5800 % Arbitrary length
-            continue;
-        end
+        [ppg_signal, timestamps] = read_ppg_signal(file_name);
 
         % Calculate the score of all pulses in a signal
-        single_signal_scores = score_ppg_signal(ppg_signal);
+        single_signal_scores = score_ppg_signal(ppg_signal, timestamps);
                 
         % Return the median among the pulse scores
         score = median(single_signal_scores);

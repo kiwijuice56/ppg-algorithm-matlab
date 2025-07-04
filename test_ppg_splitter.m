@@ -1,14 +1,7 @@
 % Tests and plots the PPG pulse splitting procedure
 
-% Data measured in ms
-ppg_signal = read_ppg_signal(readmatrix("data/young-athletic/1_raw.csv"), 4);
-plot(ppg_signal)
-
-sampling_frequency = 50; % Hertz
-cutoff_frequency = 1; % Hertz
-
-[smoothed, indices] = split_ppg_signal(ppg_signal, ...
-    sampling_frequency * resampling_scale, cutoff_frequency * resampling_scale);
+[ppg_signal, timestamps] = read_ppg_signal("data/young-athletic/2_raw.csv");
+[~, indices] = split_ppg_signal(ppg_signal);
 
 clf('reset');
 
