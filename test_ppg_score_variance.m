@@ -4,10 +4,10 @@ hold on
 
 % Calculate the scores of two signals
 [ppg_signal1, timestamps1] = read_ppg_signal("data/good-nagpur/407-2.csv");
-scores1 = score_ppg_signal(ppg_signal1, timestamps1);
+scores1 = score_ppg_signal(preprocess_ppg_signal(ppg_signal1, timestamps1), 10);
 
 [ppg_signal2, timestamps2] = read_ppg_signal("data/good-nagpur/407-1.csv");
-scores2 = score_ppg_signal(ppg_signal2, timestamps2);
+scores2 = score_ppg_signal(preprocess_ppg_signal(ppg_signal2, timestamps2), 10);
 
 
 % Plot individual points for the pulses in each signal

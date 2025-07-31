@@ -22,10 +22,13 @@ for i = 1:3
         [ppg_signal, timestamps] = read_ppg_signal(file_name);
 
         % Calculate the score of all pulses in a signal
-        single_signal_scores = score_ppg_signal(ppg_signal, timestamps);
-                
+        single_signal_scores = score_ppg_signal(preprocess_ppg_signal(ppg_signal, timestamps), 10);
+        
+        single_signal_scores = rmoutliers(single_signal_scores);
+
         % Return the median among the pulse scores
-        score = median(single_signal_scores);
+        score = median(single_signal_scores(length(single_signal_scores) - 3 : length(single_signal_scores)));
+
 
         if i <= 2
             % Store young athletic/non-athletic in their own plots

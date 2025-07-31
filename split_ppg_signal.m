@@ -8,8 +8,8 @@ arguments
 end
 
 % Smooth the ppg signal aggressively using a moving average
-n = 30;
-smoothing_coef = ones(1, n)/ n;
+n = 40;
+smoothing_coef = ones(1, n) / n;
 smoothed_ppg_signal = filter(smoothing_coef, 1, ppg_signal);
 delay = floorDiv(length(smoothing_coef) - 1, 2);
 
