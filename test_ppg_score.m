@@ -74,7 +74,9 @@ for i = 1:3
         end
     end
 end
+
 xlim([0 2000])
+
 hold off
 
 % Process data into a format that boxplot can use...
@@ -100,5 +102,7 @@ title('Cardiovascular Scores')
 key = {'Young Athletic', 'Young Nonathletic', 'Old Healthy', 'Old Hypertensive', 'Old Pre CAD', 'Old CAD'};
 xticklabels(key)
 ylabel('Score')
+ylim([0.4 1.3])
+
 
 hold off
