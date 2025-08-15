@@ -49,7 +49,7 @@ for i = 1:3
             'HorizontalAlignment', 'left');
 
         % Return the median among the pulse scores
-        score = median(maxk(single_signal_scores, 5));
+        score = median(single_signal_scores);
 
         if i <= 2
             % Store young athletic/non-athletic in their own plots
@@ -77,7 +77,6 @@ end
 xlim([0 2000])
 hold off
 
-%return
 % Process data into a format that boxplot can use...
 % Strange and hacky
 y = num2cell(1:numel(scores));

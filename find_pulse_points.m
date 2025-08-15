@@ -36,8 +36,11 @@ else
     diastolic_peak = pulse_indices(1) + peak_offset + zero_crossing_index - 1;
 end
 
-[~, dicrotic_notch] = min(pulse(systolic_peak : diastolic_peak));
-dicrotic_notch = systolic_peak + dicrotic_notch - 1;
+search_ratio = 0.65; % Don't search the entire range to avoid slipping into the diastolic peak
+search_end = systolic_peak + round(search_ratio * (diastolic_peak - systolic_peak));
+[~, notch_relative_index] = min(pulse(systolic_peak : search_end)); 
+dicrotic_notch = systolic_peak + notch_relative_index - 1;
+
 
 processed_pulse = pulse;
 
