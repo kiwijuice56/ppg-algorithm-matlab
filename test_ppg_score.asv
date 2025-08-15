@@ -10,8 +10,8 @@ classification_lookup = dictionary(ids, labels);
 % Calculate scores for all PPG signals
 
 hold on
-folders = ["data/young-athletic", "data/young-nonathletic", "data/good-nagpur"];
-for i = 1:3
+folders = ["data/young-nonathletic"];
+for i = 1:1
     directory = folders(i); 
     files = dir(fullfile(directory,'*.csv')); 
 
@@ -24,18 +24,20 @@ for i = 1:3
         [ppg_signal, timestamps] = read_ppg_signal(file_name);
 
         % Calculate the score of all pulses in a signal
-        [single_signal_scores, second_pulse, systolic_peak, diastolic_peak, dicrotic_notch] = score_ppg_signal_derivative(preprocess_ppg_signal(-ppg_signal, timestamps));
+        [single_signal_scores, second_pulse, derivative, systolic_peak, diastolic_peak] = score_ppg_signal_derivative(preprocess_ppg_signal(-ppg_signal, timestamps));
         
         label = sprintf('%.3f', single_signal_scores(2));
         offset_amount = 650;
         X = (1:length(second_pulse)) + (k-1) * offset_amount;
         h = plot(X, second_pulse);
-
+        X2 = (1:length(derivative)) + (k-1) * offset_amount - 14 - 24;
+        plot(X2, 20.0 * derivative, 'LineStyle', ':', 'LineWidth', 1);
+        
         plot(X(systolic_peak), second_pulse(systolic_peak), 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 3);
-        plot(X(dicrotic_notch), second_pulse(dicrotic_notch), 'bo', 'MarkerFaceColor', 'b', 'MarkerSize', 3);
-        plot(X(diastolic_peak), second_pulse(diastolic_peak), 'go', 'MarkerFaceColor', 'g', 'MarkerSize', 2);
+        plot(X(peak_index), second_pulse(systolic_peak), 'ro', 'MarkerFaceColor', 'g', 'MarkerSize', 3);
 
-        % Get X/Y data from the plotted line
+        % Get 
+        % X/Y data from the plotted line
         Xdata = h.XData;
         Ydata = h.YData;
 
@@ -49,7 +51,7 @@ for i = 1:3
             'HorizontalAlignment', 'left');
 
         % Return the median among the pulse scores
-        score = median(maxk(single_signal_scores, 5));
+        score = median(single_signal_scores);
 
         if i <= 2
             % Store young athletic/non-athletic in their own plots
@@ -77,7 +79,7 @@ end
 xlim([0 2000])
 hold off
 
-%return
+return
 % Process data into a format that boxplot can use...
 % Strange and hacky
 y = num2cell(1:numel(scores));

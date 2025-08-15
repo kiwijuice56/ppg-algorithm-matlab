@@ -11,7 +11,7 @@ ppg_pulse = ppg_pulse ./ max(abs(ppg_pulse));
 
 % Interpolate using cubic interpolation
 % We want a fixed amount of samples for all pulses
-time = linspace(1, length(ppg_pulse), 100);
+time = linspace(1, length(ppg_pulse), 500);
 ppg_pulse = interp1(1:length(ppg_pulse), ppg_pulse, time, 'pchip');
 
 processed_ppg_pulse = ppg_pulse;
