@@ -1,5 +1,6 @@
-function [scores] = score_ppg_signal(processed_ppg_signal, coefficient_count)
-%SCORE_PPG_SIGNAL Returns the health scores of all pulses in a preprocessed
+function [scores] = score_ppg_signal_fourier(processed_ppg_signal, coefficient_count)
+%SCORE_PPG_SIGNAL_FOURIER 
+% Returns the health scores of all pulses in a preprocessed
 % PPG signal (via preprocess_ppg_signal(raw, timestamps)). See 
 % https://drive.google.com/file/u/3/d/1pe0JXUnOhZpmCMGCEVop8Zxzz9kD3FCD/view
 % for complete details on algorithm, developed by Shreya.

@@ -11,7 +11,7 @@ classification_lookup = dictionary(ids, labels);
 
 hold on
 folders = ["data/young-athletic", "data/young-nonathletic", "data/good-nagpur"];
-for i = 1:3
+for i = 1:1
     directory = folders(i); 
     files = dir(fullfile(directory,'*.csv')); 
 
@@ -24,16 +24,12 @@ for i = 1:3
         [ppg_signal, timestamps] = read_ppg_signal(file_name);
 
         % Calculate the score of all pulses in a signal
-        [single_signal_scores, second_pulse, systolic_peak, diastolic_peak, dicrotic_notch] = score_ppg_signal_derivative(preprocess_ppg_signal(-ppg_signal, timestamps));
+        [single_signal_scores, second_pulse] = score_ppg_signal_linear_slope(preprocess_ppg_signal(-ppg_signal, timestamps));
         
         label = sprintf('%.3f', single_signal_scores(2));
         offset_amount = 650;
         X = (1:length(second_pulse)) + (k-1) * offset_amount;
         h = plot(X, second_pulse);
-
-        plot(X(systolic_peak), second_pulse(systolic_peak), 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 3);
-        plot(X(dicrotic_notch), second_pulse(dicrotic_notch), 'bo', 'MarkerFaceColor', 'b', 'MarkerSize', 3);
-        plot(X(diastolic_peak), second_pulse(diastolic_peak), 'go', 'MarkerFaceColor', 'g', 'MarkerSize', 2);
 
         % Get X/Y data from the plotted line
         Xdata = h.XData;
@@ -77,6 +73,8 @@ end
 
 xlim([0 2000])
 
+return
+
 hold off
 
 % Process data into a format that boxplot can use...
@@ -102,7 +100,5 @@ title('Cardiovascular Scores')
 key = {'Young Athletic', 'Young Nonathletic', 'Old Healthy', 'Old Hypertensive', 'Old Pre CAD', 'Old CAD'};
 xticklabels(key)
 ylabel('Score')
-ylim([0.4 1.3])
-
 
 hold off

@@ -1,46 +1,50 @@
 function [processed_pulse, systolic_peak, diastolic_peak, dicrotic_notch] = find_pulse_points(unprocessed_pulse)
-%FIND_PULSE_POINTS Find the major anatomy points of an unprocessed PPG
-%pulse (but from a processed PPG signal)
+%FIND_PULSE_POINTS 
+% Find the major anatomy points of an unprocessed PPG
+% pulse (but from a processed PPG signal)
 
 pulse = preprocess_ppg_pulse(unprocessed_pulse);
 
-% First, smooth the pulse heavily to reduce any noise
+% Smooth the pulse heavily to reduce any noise
 pulse = smooth(pulse, 50);
 
-% Then, trim a small amount from the beginning and end to remove the
-% foot/onset
+% Then, trim a small amount from the beginning and end to remove the foot
+% (these are guaranteed to be in range by preprocess_ppg_pulse, which
+% resamples the pulse to a fixed number of samples
 remove_count_front = 60;
 remove_count_back = 15;
 pulse = pulse(remove_count_front : length(pulse) - remove_count_back);
 
 [~, pulse_indices] = findpeaks(pulse);
 
-% Case 0: very poor signal
+% Case 0: very poor signal, no peaks at all
 if isempty(pulse_indices)
     systolic_peak = 1;
     diastolic_peak = length(pulse);
-% Case 1: the notch is clearly visible
+% Case 1: the notch is clearly visible, with 2 whole peaks
 elseif length(pulse_indices) > 1 
     systolic_peak = pulse_indices(1);
     diastolic_peak = pulse_indices(2);
 % Case 2: the notch is too flat, but systolic notch is there -- use
-% derivative method
+% derivative method to find the location of the diastolic notch
 else
     systolic_peak = pulse_indices(1);
     
     % Add a small offset so that we don't select the systolic peak again
     peak_offset = min([20, length(pulse) - systolic_peak]);
     
-    half_pulse_gradient = gradient(pulse(pulse_indices(1) + peak_offset : length(pulse)));
+    half_pulse_gradient = gradient(pulse(systolic_peak + peak_offset : length(pulse)));
     [~, zero_crossing_index] = min(abs(half_pulse_gradient));
-    diastolic_peak = pulse_indices(1) + peak_offset + zero_crossing_index - 1;
+    diastolic_peak = systolic_peak + peak_offset + zero_crossing_index - 1;
 end
 
-search_ratio = 0.65; % Don't search the entire range to avoid slipping into the diastolic peak
+% Finally, search for the dicrotic notch in between both peaks
+
+% Don't search the entire range to avoid slipping into the diastolic peak
+search_ratio = 0.65; 
 search_end = systolic_peak + round(search_ratio * (diastolic_peak - systolic_peak));
 [~, notch_relative_index] = min(pulse(systolic_peak : search_end)); 
 dicrotic_notch = systolic_peak + notch_relative_index - 1;
-
 
 processed_pulse = pulse;
 
