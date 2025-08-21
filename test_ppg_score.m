@@ -11,7 +11,7 @@ classification_lookup = dictionary(ids, labels);
 
 hold on
 folders = ["data/young-athletic", "data/young-nonathletic", "data/good-nagpur"];
-for i = 1:1
+for i = 1:3
     directory = folders(i); 
     files = dir(fullfile(directory,'*.csv')); 
 
@@ -24,9 +24,9 @@ for i = 1:1
         [ppg_signal, timestamps] = read_ppg_signal(file_name);
 
         % Calculate the score of all pulses in a signal
-        [single_signal_scores, second_pulse] = score_ppg_signal_linear_slope(preprocess_ppg_signal(-ppg_signal, timestamps));
+        [single_signal_scores, second_pulse] = score_ppg_signal_rising_edge_area(preprocess_ppg_signal(-ppg_signal, timestamps));
         
-        label = sprintf('%.3f', single_signal_scores(2));
+        label = sprintf('%.4f', 100 * single_signal_scores(2));
         offset_amount = 650;
         X = (1:length(second_pulse)) + (k-1) * offset_amount;
         h = plot(X, second_pulse);
@@ -72,8 +72,6 @@ for i = 1:1
 end
 
 xlim([0 2000])
-
-return
 
 hold off
 
