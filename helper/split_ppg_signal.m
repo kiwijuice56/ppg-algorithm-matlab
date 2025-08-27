@@ -1,7 +1,8 @@
 function [smoothed, indices] = split_ppg_signal(ppg_signal)
-%SPLIT_PPG_SIGNAL Returns an array of indices such that each pair of
-%adjacent indices forms a pulse in the ppg signal. Also returns smoothed
-%PPG signal, but this is only for debugging
+%SPLIT_PPG_SIGNAL 
+% Returns an array of indices such that each pair of
+% adjacent indices forms a pulse in the ppg signal. Also returns smoothed
+% PPG signal for debugging purposes
 
 arguments
     ppg_signal (1,:) double

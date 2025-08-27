@@ -1,12 +1,9 @@
-function [processed_pulse, systolic_peak, diastolic_peak, dicrotic_notch] = find_pulse_points(unprocessed_pulse)
+function [systolic_peak, diastolic_peak, dicrotic_notch] = find_pulse_points(processed_pulse)
 %FIND_PULSE_POINTS 
-% Find the major anatomy points of an unprocessed PPG
-% pulse (but from a processed PPG signal)
-
-pulse = preprocess_ppg_pulse(unprocessed_pulse);
+% Find the major anatomy points of a processed PPG pulse.
 
 % Smooth the pulse heavily to reduce any noise
-pulse = smooth(pulse, 50);
+pulse = smooth(processed_pulse, 50);
 
 % Then, trim a small amount from the beginning and end to remove the foot
 % (these are guaranteed to be in range by preprocess_ppg_pulse, which

@@ -14,7 +14,8 @@ end
 % Calculate scores of all pulses
 scores = zeros(length(indices) - 1, 1);
 for i=1:length(indices) - 1 
-    [pulse, systolic_peak, ~, ~] = find_pulse_points(processed_ppg_signal(indices(i) : indices(i + 1)));
+    pulse = preprocess_ppg_pulse(indices(i) : indices(i + 1));
+    [systolic_peak, ~, ~] = find_pulse_points(pulse);
 
     % Find the first derivative
     first_derivative = gradient(pulse);

@@ -1,6 +1,6 @@
 function [cosine_coefficients, sine_coefficients] = calculate_fourier_coefficients(ppg_pulse) 
-%CALCULATE_FOURIER_COEFFICIENTS Returns the real fourier coefficients of a
-%preproccessed PPG pulse
+%CALCULATE_FOURIER_COEFFICIENTS 
+% Returns the real fourier coefficients of a preproccessed PPG pulse.
 
 arguments
     ppg_pulse (1,:) double

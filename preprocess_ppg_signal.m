@@ -1,7 +1,8 @@
 function [processed_ppg_signal] = preprocess_ppg_signal(ppg_signal, timestamps)
-%PREPROCESS_PPG_SIGNAL Returns a processed copy of a raw PPG signal (red 
-%channel values of a camera recording at the given timestamps, 
-%in milliseconds). Assumes raw PPG signal has the correct orientation. 
+%PREPROCESS_PPG_SIGNAL 
+% Returns a processed copy of a raw PPG signal (red 
+% channel values of a camera recording at the given timestamps, 
+% in milliseconds). Assumes raw PPG signal has the correct orientation. 
 
 arguments
     ppg_signal (1,:) double
