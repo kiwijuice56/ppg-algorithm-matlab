@@ -1,6 +1,6 @@
 function [smoothed_signal] = smooth(signal, n)
 %SMOOTH 
-% Returns a smoothed and unshifted signal with window size n
+% Returns a smoothed and unshifted signal with window size n.
 arguments
     signal (1,:) double
     n (1,1) int64

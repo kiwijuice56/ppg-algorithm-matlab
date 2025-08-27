@@ -24,13 +24,47 @@ PPG signal is preprocessed, the resulting PPG pulses are not -- before
 any analysis, each pulse must also be preprocessed via `preprocess_ppg_pulse`,
 which normalizes each pulse and resamples it to a fixed count of 500 samples.
 
-### `helper/`
-Contains helper functions used in multiple analysis algorithms
-#### `calculate_fourier_coefficients`
+### Functions
+
+#### `helper/calculate_fourier_coefficients`
 Returns the real fourier coefficients of a preproccessed PPG pulse.
 
-#### `find_pulse_points`
+#### `helper/find_pulse_points`
+Find the major anatomy points of a processed PPG pulse (the systolic peak,
+the diastolic peak, and the dicrotic notch).
 
+#### `helper/read_ppg_signal`
+Given the .csv path of a signal, return the raw time and data arrays.
+This is only used for MATLAB testing, since the heart health visualizer 
+app is responsible for saving and loading PPG signals.
+
+#### `helper/smooth`
+Returns a smoothed and unshifted signal.
+
+#### `test/*`
+Contains scripts used for testing and visualizing the results of 
+the functions and algorithms in this repository. Each script requires
+some data to work properly, which can be loaded via `helper/read_ppg_signal`.
+
+#### `score_ppg_signal_fourier`
+Returns the health scores of all pulses in a preprocessed
+PPG signal. See [this slide deck](https://drive.google.com/file/u/3/d/1pe0JXUnOhZpmCMGCEVop8Zxzz9kD3FCD/view) 
+for complete details on this algorithm, developed by Shreya Kumar.
+
+#### `score_ppg_signal_linear_slope`
+Returns the health scores of all pulses in a preprocessed
+PPG signal. See Victoria Ouyang's thesis for details -- this algorithm 
+calculates the slope of the rising edge of each pulse.
+
+#### `score_ppg_signal_peak_detection`
+Returns the health scores of all pulses in a preprocessed
+PPG signal. Uses peak detection to find position of dicrotic notch relative 
+to the diastolic and systolic peaks.
+
+#### `score_ppg_signal_peak_detection`
+Returns the health scores of all pulses in a preprocessed
+PPG signal. See Victoria Ouyang's thesis for details -- this algorithm 
+calculates the area under the rising edge curve.
 
 ## Sources
 - Shreya Kumar: fourier coefficient scoring algorithm

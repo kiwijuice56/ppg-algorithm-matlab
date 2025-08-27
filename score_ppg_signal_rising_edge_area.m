@@ -3,7 +3,7 @@ function [scores, second_pulse] = score_ppg_signal_rising_edge_area(processed_pp
 % Returns the health scores of all pulses in a preprocessed
 % PPG signal (via preprocess_ppg_signal(raw, timestamps)). See Victoria
 % Ouyang's thesis for details -- this algorithm calculates the area under
-% the rising edge curve
+% the rising edge curve.
 arguments
     processed_ppg_signal (1,:) double
 end
