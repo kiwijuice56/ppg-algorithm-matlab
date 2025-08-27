@@ -43,7 +43,5 @@ search_end = systolic_peak + round(search_ratio * (diastolic_peak - systolic_pea
 [~, notch_relative_index] = min(pulse(systolic_peak : search_end)); 
 dicrotic_notch = systolic_peak + notch_relative_index - 1;
 
-processed_pulse = pulse;
-
 end
 

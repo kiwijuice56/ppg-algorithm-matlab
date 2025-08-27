@@ -24,25 +24,8 @@ for i = 1:3
         [ppg_signal, timestamps] = read_ppg_signal(file_name);
 
         % Calculate the score of all pulses in a signal
-        [single_signal_scores, second_pulse] = score_ppg_signal_rising_edge_area(preprocess_ppg_signal(-ppg_signal, timestamps));
-        
-        label = sprintf('%.4f', 100 * single_signal_scores(2));
-        offset_amount = 650;
-        X = (1:length(second_pulse)) + (k-1) * offset_amount;
-        h = plot(X, second_pulse);
-
-        % Get X/Y data from the plotted line
-        Xdata = h.XData;
-        Ydata = h.YData;
-
-        % Pick a point to place the label (here: last point of the line)
-        x_label = Xdata(end);
-        y_label = Ydata(end);
-
-        % Add the label
-        text(x_label, y_label, label, ...
-            'VerticalAlignment', 'middle', ...
-            'HorizontalAlignment', 'left');
+        % NOTE: Swap the function here depending on what score you'd like to test
+        single_signal_scores = score_ppg_signal_rising_edge_area(preprocess_ppg_signal(-ppg_signal, timestamps));
 
         % Return the median among the pulse scores
         score = median(single_signal_scores);
@@ -70,8 +53,6 @@ for i = 1:3
         end
     end
 end
-
-xlim([0 2000])
 
 hold off
 

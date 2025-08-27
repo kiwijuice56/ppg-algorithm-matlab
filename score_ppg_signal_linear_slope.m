@@ -1,4 +1,4 @@
-function [scores, second_pulse] = score_ppg_signal_linear_slope(processed_ppg_signal)
+function [scores] = score_ppg_signal_linear_slope(processed_ppg_signal)
 %SCORE_PPG_LINEAR_SLOPE
 % Returns the health scores of all pulses in a preprocessed
 % PPG signal (via preprocess_ppg_signal(raw, timestamps)). See Victoria
@@ -22,10 +22,6 @@ for i=1:length(indices) - 1
     else 
         rising_slope_linear_approximation = (pulse(systolic_peak) - pulse(1)) / (systolic_peak - 1);
         scores(i) = rising_slope_linear_approximation;
-    end
-
-    if (i == 2) 
-        second_pulse = pulse;
     end
 end
 

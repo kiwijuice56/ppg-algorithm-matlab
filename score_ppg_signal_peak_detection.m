@@ -14,7 +14,7 @@ end
 % Calculate scores of all pulses
 scores = zeros(length(indices) - 1, 1);
 for i=1:length(indices) - 1 
-    pulse = preprocess_ppg_pulse(indices(i) : indices(i + 1));
+    pulse = preprocess_ppg_pulse(processed_ppg_signal(indices(i) : indices(i + 1)));
     [systolic_peak, diastolic_peak, dicrotic_notch] = find_pulse_points(pulse);
 
     if (systolic_peak == diastolic_peak) 

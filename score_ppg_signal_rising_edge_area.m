@@ -1,4 +1,4 @@
-function [scores, second_pulse] = score_ppg_signal_rising_edge_area(processed_ppg_signal)
+function [scores] = score_ppg_signal_rising_edge_area(processed_ppg_signal)
 %SCORE_PPG_RISING_EDGE_AREA
 % Returns the health scores of all pulses in a preprocessed
 % PPG signal (via preprocess_ppg_signal(raw, timestamps)). See Victoria
@@ -14,7 +14,7 @@ end
 % Calculate scores of all pulses
 scores = zeros(length(indices) - 1, 1);
 for i=1:length(indices) - 1 
-    pulse = preprocess_ppg_pulse(indices(i) : indices(i + 1));
+    pulse = preprocess_ppg_pulse(processed_ppg_signal(indices(i) : indices(i + 1)));
     [systolic_peak, ~, ~] = find_pulse_points(pulse);
 
     % Find the first derivative
@@ -29,18 +29,12 @@ for i=1:length(indices) - 1
         starting_point = first_derivative_peak_indices(1);
         ending_point = max([starting_point, systolic_peak]);
 
-        %second_derivative = gradient(first_derivative);
 
-        % Approximate integral of second derivative (numerator) and 
-        % original pulse (denominator)
+        % Integral of second derivative (numerator) and original pulse (denominator)
         numerator = first_derivative(ending_point) - first_derivative(starting_point);
         denominator = sum(pulse(starting_point : ending_point));
 
         scores(i) = abs(numerator / denominator);
-    end
-
-    if (i == 2) 
-        second_pulse = pulse;
     end
 end
 

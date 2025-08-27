@@ -15,9 +15,8 @@ end
 % Calculate scores of all pulses
 scores = zeros(length(indices) - 1, 1);
 for i=1:length(indices) - 1
-    pulse = processed_ppg_signal(indices(i) : indices(i + 1));
-    pulse = preprocess_ppg_pulse(pulse);
-
+    pulse = preprocess_ppg_pulse(processed_ppg_signal(indices(i) : indices(i + 1)));
+    
     n = double(coefficient_count);
     [cos_coef, sin_coef] = calculate_fourier_coefficients(pulse);
     combined_coef = cos_coef(1:n);
