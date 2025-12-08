@@ -16,16 +16,12 @@ end
 scores = zeros(length(indices) - 1, 1);
 for i=1:length(indices) - 1
     pulse = preprocess_ppg_pulse(processed_ppg_signal(indices(i) : indices(i + 1)));
-    
+
     n = double(coefficient_count);
-    [cos_coef, sin_coef] = calculate_fourier_coefficients(pulse);
+    [cos_coef, ~] = calculate_fourier_coefficients(pulse);
     combined_coef = cos_coef(1:n);
     weights = combined_coef / sum(combined_coef);
     scores(i) = dot(weights, 1:n);
-
-    combined_coef = sin_coef(1:n);
-    weights = combined_coef / sum(combined_coef);
-    scores(i) = scores(i) + dot(weights, 1:n);
 end
 
 end

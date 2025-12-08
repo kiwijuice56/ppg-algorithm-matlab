@@ -25,7 +25,7 @@ for i = 1:3
 
         % Calculate the score of all pulses in a signal
         % NOTE: Swap the function here depending on what score you'd like to test
-        single_signal_scores = score_ppg_signal_rising_edge_area(preprocess_ppg_signal(-ppg_signal, timestamps));
+        single_signal_scores = score_ppg_signal_peak_detection(preprocess_ppg_signal(-ppg_signal, timestamps));
 
         % Return the median among the pulse scores
         score = median(single_signal_scores);
