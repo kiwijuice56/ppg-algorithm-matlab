@@ -1,27 +1,14 @@
 % Tests and plots the PPG pulse splitting procedure
 
-[ppg_signal, timestamps] = read_ppg_signal("data/young-athletic/1_raw.csv");
+[ppg_signal, timestamps] = read_ppg_signal("data/young-athletic/5_raw.csv");
 
-ppg_signal = preprocess_ppg_signal(ppg_signal, timestamps);
-indices = split_ppg_signal(ppg_signal);
+ppg_signal = preprocess_ppg_signal(-ppg_signal, timestamps);
+pulse = average_pulse(ppg_signal);
 
 clf('reset');
 
-figure;
-subplot(1,2,1)
-hold on;
-plot(ppg_signal)
-plot(indices, ppg_signal(indices),'*r')
-hold off;
+plot(pulse);
 
-subplot(1,2,2)
-hold on;
-for i = 1:length(indices) - 1
-    plot(preprocess_ppg_pulse(ppg_signal(indices(i) : indices(i + 1))))
-end
-hold off;
-
-
-title('Splitting a PPG signal into its pulses');
+title('Averaging the pulses of a PPG signal');
 ylabel('Amplitude');
 xlabel('Time');

@@ -7,26 +7,15 @@ arguments
 end
 
 indices = split_ppg_signal(processed_ppg_signal);
-pulses = {}; % Cell array to hold individual pulses
-max_length = 0; % Variable to track the maximum pulse length
-
+pulse_length = 500; 
+summed_pulse = zeros(pulse_length, 1);
+num_pulses = 0;
 for i = 1:length(indices) - 1
     pulse = preprocess_ppg_pulse(processed_ppg_signal(indices(i) : indices(i + 1)));
-    pulses{end + 1} = pulse; % Store each pulse in the cell array
-    max_length = max(max_length, length(pulse)); % Update max_length
+    summed_pulse = summed_pulse + pulse(:);
+    num_pulses = num_pulses + 1;
 end
 
-% Initialize a summed pulse with zeros
-summed_pulse = zeros(max_length, 1);
-num_pulses = length(pulses);
-
-% Sum the pulses, left-aligning them
-for i = 1:num_pulses
-    pulse_length = length(pulses{i});
-    summed_pulse(1:pulse_length) = summed_pulse(1:pulse_length) + pulses{i}(:); % Left-align
-end
-
-% Calculate the average pulse
 average_pulse = summed_pulse / num_pulses;
 
 end
