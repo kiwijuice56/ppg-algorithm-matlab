@@ -5,7 +5,7 @@
 ppg_signal = preprocess_ppg_signal(ppg_signal, timestamps);
 
 % Find a single pulse
-[~, indices] = split_ppg_signal(ppg_signal);
+indices = split_ppg_signal(ppg_signal);
 ppg_signal = ppg_signal(indices(3) : indices(4)); % Pick an arbitrary pulse
 
 % Preprocess PPG pulse

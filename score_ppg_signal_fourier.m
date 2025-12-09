@@ -10,7 +10,7 @@ arguments
 end
 
 % Preprocess signal and split it into pulses
-[~, indices] = split_ppg_signal(processed_ppg_signal);
+indices = split_ppg_signal(processed_ppg_signal);
 
 % Calculate scores of all pulses
 scores = zeros(length(indices) - 1, 1);

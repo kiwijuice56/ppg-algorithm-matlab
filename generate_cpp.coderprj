@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<coderProject client="MatlabCoder" containerVersion="1" createdBy="R2025a" modifiedBy="R2025a">
+  <layers>
+    <layer id="core" version="R2025a">
+      <parts>
+        <part role="testRepository">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2025a http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.core.mfz.TestRepositoryState id="1" type="coderapp.internal.core.mfz.TestRepositoryState">
+              <Tests type="coderapp.internal.core.mfz.TestSpec">
+                <Type>FILE</Type>
+                <Value>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\test\test_ppg_score.m</Value>
+              </Tests>
+            </coderapp.internal.core.mfz.TestRepositoryState>
+          </MF0>
+        </part>
+      </parts>
+    </layer>
+    <layer id="interface" version="R2025a">
+      <parts>
+        <part role="mainInterface">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2025a http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.interface.project.Interface id="1" type="coderapp.internal.interface.project.Interface">
+              <EntryPoints id="2" type="coderapp.internal.interface.project.EntryPointFunction">
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>preprocess_ppg_signal.m</Path>
+                </File>
+                <Name>preprocess_ppg_signal</Name>
+              </EntryPoints>
+              <EntryPoints id="3" type="coderapp.internal.interface.project.EntryPointFunction">
+                <Signatures id="4" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="5" type="coderapp.internal.interface.project.Input">
+                    <Name>processed_ppg_signal</Name>
+                    <Type id="6" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <Inputs id="7" type="coderapp.internal.interface.project.Input">
+                    <Name>coefficient_count</Name>
+                    <Type id="8" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>score_ppg_signal_fourier.m</Path>
+                </File>
+                <Name>score_ppg_signal_fourier</Name>
+              </EntryPoints>
+              <EntryPoints id="9" type="coderapp.internal.interface.project.EntryPointFunction">
+                <Signatures id="10" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="11" type="coderapp.internal.interface.project.Input">
+                    <Name>processed_ppg_signal</Name>
+                    <Type id="6" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>score_ppg_signal_linear_slope.m</Path>
+                </File>
+                <Name>score_ppg_signal_linear_slope</Name>
+              </EntryPoints>
+              <EntryPoints id="12" type="coderapp.internal.interface.project.EntryPointFunction">
+                <Signatures id="13" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="14" type="coderapp.internal.interface.project.Input">
+                    <Name>processed_ppg_signal</Name>
+                    <Type id="6" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>score_ppg_signal_peak_detection.m</Path>
+                </File>
+                <Name>score_ppg_signal_peak_detection</Name>
+              </EntryPoints>
+              <EntryPoints id="15" type="coderapp.internal.interface.project.EntryPointFunction">
+                <Signatures id="16" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="17" type="coderapp.internal.interface.project.Input">
+                    <Name>processed_ppg_signal</Name>
+                    <Type id="6" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>score_ppg_signal_rising_edge_area.m</Path>
+                </File>
+                <Name>score_ppg_signal_rising_edge_area</Name>
+              </EntryPoints>
+              <EntryPoints id="18" type="coderapp.internal.interface.project.EntryPointFunction">
+                <Signatures id="19" type="coderapp.internal.interface.project.FunctionSignature">
+                  <Inputs id="20" type="coderapp.internal.interface.project.Input">
+                    <Name>ppg_signal</Name>
+                    <Type id="21" type="coderapp.internal.codertype.PrimitiveType"/>
+                  </Inputs>
+                  <NumOutputs>1</NumOutputs>
+                </Signatures>
+                <File type="coderapp.internal.util.mfz.FileSpec">
+                  <Path>helper/split_ppg_signal.m</Path>
+                </File>
+                <Name>split_ppg_signal</Name>
+              </EntryPoints>
+              <SizeConstraints id="22" type="coderapp.internal.interface.project.SizeConstraints">
+                <Value type="coderapp.internal.interface.project.SizeConstraintsValue"/>
+              </SizeConstraints>
+              <Types id="23" type="coderapp.internal.codertype.TypeStore">
+                <Types id="6" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>double</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension">
+                    <Sizedness>UNBOUNDED</Sizedness>
+                  </Size>
+                </Types>
+                <Types id="24" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>int64</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension">
+                    <Sizedness>UNBOUNDED</Sizedness>
+                  </Size>
+                </Types>
+                <Types id="8" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>int64</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                </Types>
+                <Types id="25" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>int64</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension">
+                    <Sizedness>UNBOUNDED</Sizedness>
+                  </Size>
+                </Types>
+                <Types id="21" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>double</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension">
+                    <Sizedness>UNBOUNDED</Sizedness>
+                  </Size>
+                </Types>
+                <Types id="26" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>int64</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                </Types>
+                <Types id="27" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>double</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension">
+                    <Sizedness>UNBOUNDED</Sizedness>
+                  </Size>
+                </Types>
+                <Types id="28" type="coderapp.internal.codertype.PrimitiveType">
+                  <ClassName>int64</ClassName>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                  <Size type="coderapp.internal.codertype.Dimension"/>
+                </Types>
+              </Types>
+            </coderapp.internal.interface.project.Interface>
+          </MF0>
+        </part>
+      </parts>
+    </layer>
+    <layer id="matlabCoder" version="R2025a">
+      <parts>
+        <part role="matlabCoder">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2025a http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.mlc.mfz.MatlabCoderProjectState id="1" type="coderapp.internal.mlc.mfz.MatlabCoderProjectState">
+              <Activity id="2" type="coderapp.internal.mlc.mfz.MainBuildActivity">
+                <Compile>NOT_PLANNED</Compile>
+                <Generate>SUCCESS</Generate>
+                <TargetHardware>None - Select device</TargetHardware>
+                <TargetLanguage>C++</TargetLanguage>
+                <WorkflowTarget>LIB</WorkflowTarget>
+                <Result id="3" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult"/>
+              </Activity>
+              <MainBuildResult id="3" type="coderapp.internal.mlc.mfz.MatlabCoderCodegenResult">
+                <WorkflowTarget>LIB</WorkflowTarget>
+                <LogDirectory>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal</LogDirectory>
+                <MainReport id="4" type="coderapp.internal.build.mfz.CodegenArtifact"/>
+                <Artifacts id="4" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <SubType>CODEGEN_REPORT</SubType>
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\html\report.mldatx</Path>
+                  </File>
+                  <Type>CODEGEN_REPORT</Type>
+                </Artifacts>
+                <Artifacts id="5" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\coder_array.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="6" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\preprocess_ppg_signal.cpp</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="7" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\preprocess_ppg_signal.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="8" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\preprocess_ppg_signal_types.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="9" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\rtGetInf.cpp</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="10" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\rtGetInf.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="11" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\rtGetNaN.cpp</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="12" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\rtGetNaN.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="13" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\rt_nonfinite.cpp</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="14" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\rt_nonfinite.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="15" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\rtwtypes.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="16" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\examples\main.cpp</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <Artifacts id="17" type="coderapp.internal.build.mfz.CodegenArtifact">
+                  <File type="coderapp.internal.util.mfz.FileSpec">
+                    <Path>C:\Users\Alfar\Projects\hardware\ppg-algorithm-matlab\codegen\lib\preprocess_ppg_signal\examples\main.h</Path>
+                  </File>
+                  <Type>GENERATED_SOURCE</Type>
+                </Artifacts>
+                <BuildFolder type="coderapp.internal.util.mfz.FileSpec"/>
+                <Success>true</Success>
+                <Timestamp>2025-12-08T14:14:46</Timestamp>
+              </MainBuildResult>
+            </coderapp.internal.mlc.mfz.MatlabCoderProjectState>
+          </MF0>
+        </part>
+        <part role="standaloneConfig">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2025a http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.ext.ConfigStore id="1" type="coderapp.internal.ext.ConfigStore">
+              <Values id="2" type="coderapp.internal.ext.ConfigEntry">
+                <Key>enableOpenMP</Key>
+                <Data id="3" type="coderapp.internal.config.data.BooleanParamData">
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="4" type="coderapp.internal.ext.ConfigEntry">
+                <Key>filePartitionMethod</Key>
+                <Data id="5" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>SingleFile</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="6" type="coderapp.internal.ext.ConfigEntry">
+                <Key>hardwareName</Key>
+                <Data id="7" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>&lt;&lt;&lt;NONE&gt;&gt;&gt;</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="8" type="coderapp.internal.ext.ConfigEntry">
+                <Key>prodDeviceVendor</Key>
+                <Data id="9" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>ARM Compatible</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="10" type="coderapp.internal.ext.ConfigEntry">
+                <Key>targetDeviceVendor</Key>
+                <Data id="11" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>ARM Compatible</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="12" type="coderapp.internal.ext.ConfigEntry">
+                <Key>targetLang</Key>
+                <Data id="13" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>C++</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+            </coderapp.internal.ext.ConfigStore>
+          </MF0>
+        </part>
+        <part role="mexConfig">
+          <MF0 packageUris="http://schema.mathworks.com/mf0/coderapp_config_datamodel/R2021a.001 http://schema.mathworks.com/mf0/coderapp_core_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_core_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_form_datamodel/R2020a http://schema.mathworks.com/mf0/coderapp_matlabcoder_proj_dm/R2025a http://schema.mathworks.com/mf0/coderapp_matlabcoder_rt_dm/R2022b http://schema.mathworks.com/mf0/coderapp_types_project_datamodel/R2025a http://schema.mathworks.com/mf0/coderapp_types_runtime_datamodel/R2022b http://schema.mathworks.com/mf0/coderapp_utils_datamodel/R2020a" version="1.1">
+            <coderapp.internal.ext.ConfigStore id="1" type="coderapp.internal.ext.ConfigStore">
+              <Values id="2" type="coderapp.internal.ext.ConfigEntry">
+                <Key>enableOpenMP</Key>
+                <Data id="3" type="coderapp.internal.config.data.BooleanParamData">
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="4" type="coderapp.internal.ext.ConfigEntry">
+                <Key>filePartitionMethod</Key>
+                <Data id="5" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>SingleFile</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+              <Values id="6" type="coderapp.internal.ext.ConfigEntry">
+                <Key>targetLang</Key>
+                <Data id="7" type="coderapp.internal.config.data.EnumParamData">
+                  <Value>C++</Value>
+                  <Help type="coderapp.internal.util.DocRef"/>
+                </Data>
+              </Values>
+            </coderapp.internal.ext.ConfigStore>
+          </MF0>
+        </part>
+      </parts>
+    </layer>
+  </layers>
+</coderProject>
